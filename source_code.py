@@ -4,6 +4,7 @@ import json
 # Define the path for the file that will store the tasks
 TASK_FILE = "tasks.json"
 
+
 # Load tasks from the file if it exists. If the file doesn't exist, return an empty list.
 def load_tasks():
     # Check if the task file exists
@@ -18,6 +19,7 @@ def load_tasks():
             return []
     return []  # Return an empty list if the file doesn't exist
 
+
 # Save the current list of tasks to the file in JSON format
 def save_tasks(tasks):
     try:
@@ -26,6 +28,7 @@ def save_tasks(tasks):
             json.dump(tasks, file, indent=4)
     except IOError:
         print("Error saving tasks. Please check file permissions.")
+
 
 # Display all tasks with their status (completed or not)
 def display_tasks(tasks):
@@ -40,6 +43,7 @@ def display_tasks(tasks):
         status = "✔️" if task["completed"] else "❌"
         print(f"{index + 1}. {task['title']} [{status}]")
 
+
 # Add a new task to the list
 def add_task(tasks):
     title = input("Enter the task title: ").strip()  # Ask user for the task title
@@ -49,6 +53,7 @@ def add_task(tasks):
         print(f"Task '{title}' added!")
     else:
         print("Task title cannot be empty.")  # Inform the user if title is empty
+
 
 # Mark a specific task as complete
 def mark_task_complete(tasks):
@@ -95,6 +100,7 @@ def main():
             break
         else:
             print("Invalid choice. Please try again.")  # Handle invalid menu choice
+
 
 # Run the program if this file is executed directly
 if __name__ == "__main__":

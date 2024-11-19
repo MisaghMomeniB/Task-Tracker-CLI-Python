@@ -39,3 +39,13 @@ def display_tasks(tasks):
     for index, task in enumerate(tasks):
         status = "✔️" if task["completed"] else "❌"
         print(f"{index + 1}. {task['title']} [{status}]")
+
+# Add a new task to the list
+def add_task(tasks):
+    title = input("Enter the task title: ").strip()  # Ask user for the task title
+    if title:  # If title is not empty
+        # Add the new task with completed set to False
+        tasks.append({"title": title, "completed": False})
+        print(f"Task '{title}' added!")
+    else:
+        print("Task title cannot be empty.")  # Inform the user if title is empty

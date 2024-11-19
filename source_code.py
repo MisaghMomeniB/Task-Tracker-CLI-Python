@@ -26,3 +26,16 @@ def save_tasks(tasks):
             json.dump(tasks, file, indent=4)
     except IOError:
         print("Error saving tasks. Please check file permissions.")
+
+# Display all tasks with their status (completed or not)
+def display_tasks(tasks):
+    # Check if there are any tasks
+    if not tasks:
+        print("No tasks found!")  # Notify the user if there are no tasks
+        return
+
+    print("\nYour Tasks:")
+    # Loop through each task and display its title along with its completion status
+    for index, task in enumerate(tasks):
+        status = "✔️" if task["completed"] else "❌"
+        print(f"{index + 1}. {task['title']} [{status}]")

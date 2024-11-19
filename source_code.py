@@ -95,3 +95,7 @@ def main():
             break
         else:
             print("Invalid choice. Please try again.")  # Handle invalid menu choice
+
+# Run the program if this file is executed directly
+if __name__ == "__main__":
+    main()

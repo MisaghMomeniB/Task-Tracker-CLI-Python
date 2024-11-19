@@ -17,3 +17,12 @@ def load_tasks():
             print("Error loading tasks. The file might be corrupted. Starting with an empty task list.")
             return []
     return []  # Return an empty list if the file doesn't exist
+
+# Save the current list of tasks to the file in JSON format
+def save_tasks(tasks):
+    try:
+        # Write the tasks to the file with pretty indentation
+        with open(TASK_FILE, "w") as file:
+            json.dump(tasks, file, indent=4)
+    except IOError:
+        print("Error saving tasks. Please check file permissions.")

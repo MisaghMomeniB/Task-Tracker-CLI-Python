@@ -66,3 +66,32 @@ def mark_task_complete(tasks):
             print("Invalid task number.")  # Handle invalid task number
     except ValueError:
         print("Please enter a valid number.")  # Handle invalid input (non-numeric)
+
+
+# Main menu function to drive the program
+def main():
+    tasks = load_tasks()  # Load tasks when the program starts
+    while True:
+        print("\n--- Task Tracker ---")
+        print("1. View Tasks")
+        print("2. Add Task")
+        print("3. Mark Task as Complete")
+        print("4. Exit")
+
+        # Ask the user to choose an option
+        choice = input("Enter your choice: ").strip()
+
+        if choice == "1":
+            display_tasks(tasks)  # View all tasks
+        elif choice == "2":
+            add_task(tasks)  # Add a new task
+            save_tasks(tasks)  # Save tasks after adding
+        elif choice == "3":
+            mark_task_complete(tasks)  # Mark a task as complete
+            save_tasks(tasks)  # Save tasks after marking as complete
+        elif choice == "4":
+            save_tasks(tasks)  # Save tasks before exiting
+            print("Goodbye!")  # Exit the program
+            break
+        else:
+            print("Invalid choice. Please try again.")  # Handle invalid menu choice

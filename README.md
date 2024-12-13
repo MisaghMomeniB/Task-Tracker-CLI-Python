@@ -1,7 +1,3 @@
-Here’s a README for your Task Tracker program that introduces it in a stylish, informative way:
-
----
-
 # 📝 Task Tracker
 
 Welcome to the **Task Tracker**! 🚀 This simple Python program allows you to manage your daily tasks with ease. It lets you add tasks, mark them as completed, and save them for future use. The tasks are stored in a `tasks.json` file, which ensures your data is persistent even after the program ends. ✅

@@ -7,6 +7,9 @@ TASK_FILE = "tasks.json"
 
 # Load tasks from the file if it exists. If the file doesn't exist, return an empty list.
 def load_tasks():
+    """
+    Load tasks from the JSON file. Return an empty list if the file doesn't exist or is corrupted.
+    """
     if os.path.exists(TASK_FILE):
         try:
             with open(TASK_FILE, "r") as file:
@@ -18,6 +21,9 @@ def load_tasks():
 
 # Save the current list of tasks to the file in JSON format
 def save_tasks(tasks):
+    """
+    Save the tasks to the JSON file.
+    """
     try:
         with open(TASK_FILE, "w") as file:
             json.dump(tasks, file, indent=4)
@@ -26,10 +32,12 @@ def save_tasks(tasks):
 
 # Display all tasks with their status (completed or not)
 def display_tasks(tasks):
+    """
+    Display all tasks with their details.
+    """
     if not tasks:
         print("No tasks found!")
         return
-
     print("\nYour Tasks:")
     for index, task in enumerate(tasks):
         status = "✔️" if task.get("completed", False) else "❌"
@@ -39,12 +47,14 @@ def display_tasks(tasks):
 
 # Add a new task with optional priority and due date
 def add_task(tasks):
+    """
+    Add a new task to the task list.
+    """
     title = input("Enter the task title: ").strip()
     if title:
         priority = input("Enter the priority (Low, Medium, High): ").strip().capitalize()
-        if priority not in ["Low", "Medium", "High"]:
-            priority = "Medium"
-
+        priority = priority if priority in ["Low", "Medium", "High"] else "Medium"
+        
         due_date = input("Enter the due date (YYYY-MM-DD, optional): ").strip()
         if due_date:
             try:
@@ -54,18 +64,20 @@ def add_task(tasks):
                 due_date = "None"
         else:
             due_date = "None"
-
+        
         tasks.append({"title": title, "completed": False, "priority": priority, "due_date": due_date})
-        print(f"Task '{title}' added with priority '{priority}' and due date '{due_date}'!")
+        print(f"Task '{title}' added with priority '{priority}' and due date '{due_date}'.")
     else:
         print("Task title cannot be empty.")
 
 # Mark a specific task as complete
 def mark_task_complete(tasks):
+    """
+    Mark a specific task as complete.
+    """
     display_tasks(tasks)
     if not tasks:
         return
-
     try:
         task_number = int(input("Enter the task number to mark as complete: ")) - 1
         if 0 <= task_number < len(tasks):
@@ -78,10 +90,12 @@ def mark_task_complete(tasks):
 
 # Delete a task from the list
 def delete_task(tasks):
+    """
+    Delete a task from the task list.
+    """
     display_tasks(tasks)
     if not tasks:
         return
-
     try:
         task_number = int(input("Enter the task number to delete: ")) - 1
         if 0 <= task_number < len(tasks):
@@ -94,10 +108,12 @@ def delete_task(tasks):
 
 # Edit the title of an existing task
 def edit_task(tasks):
+    """
+    Edit the title of an existing task.
+    """
     display_tasks(tasks)
     if not tasks:
         return
-
     try:
         task_number = int(input("Enter the task number to edit: ")) - 1
         if 0 <= task_number < len(tasks):
@@ -114,6 +130,9 @@ def edit_task(tasks):
 
 # Search tasks by keyword
 def search_tasks(tasks):
+    """
+    Search tasks by a keyword.
+    """
     keyword = input("Enter a keyword to search: ").strip().lower()
     matching_tasks = [task for task in tasks if keyword in task["title"].lower()]
     if matching_tasks:
@@ -126,6 +145,9 @@ def search_tasks(tasks):
 
 # Generate a summary report of tasks
 def generate_report(tasks):
+    """
+    Generate a summary report of tasks.
+    """
     total = len(tasks)
     completed = sum(1 for task in tasks if task.get("completed", False))
     pending = total - completed
@@ -133,6 +155,9 @@ def generate_report(tasks):
 
 # Main menu function to drive the program
 def main():
+    """
+    Main function to manage the task tracker application.
+    """
     tasks = load_tasks()
     while True:
         print("\n--- Task Tracker ---")
@@ -144,9 +169,8 @@ def main():
         print("6. Search Tasks")
         print("7. Generate Report")
         print("8. Exit")
-
         choice = input("Enter your choice: ").strip()
-
+        
         if choice == "1":
             display_tasks(tasks)
         elif choice == "2":
